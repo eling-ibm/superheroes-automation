@@ -12,34 +12,25 @@ pipeline {
             defaultValue: 'main',
             description: 'Git branch, tag, or commit SHA to check out from the Superheroes repository.'
         )
-        choice(
+        string(
             name: 'MODE',
-            choices: ['native', 'jvm'],
-            description: 'Superheroes container image mode to use.'
+            defaultValue: 'native',
+            description: 'Superheroes container image mode to use. Possible values: native, jvm'
         )
-        choice(
+        string(
             name: 'BENCHMARK',
-            choices: [
-                'get-all-heroes',
-                'get-all-villains',
-                'get-random-hero',
-                'get-random-villain',
-                'perform-fights',
-                'first-fight',
-                'first-random-hero',
-                'first-random-villain'
-            ],
-            description: 'Benchmark scenario to run.'
+            defaultValue: 'get-all-heroes',
+            description: 'Benchmark scenario to run. Possible values: get-all-heroes, get-all-villains, get-random-hero, get-random-villain, perform-fights, first-fight, first-random-hero, first-random-villain'
         )
-        choice(
+        string(
             name: 'DRIVER',
-            choices: ['hyperfoil', 'loop'],
-            description: 'Load driver to use.'
+            defaultValue: 'hyperfoil',
+            description: 'Load driver to use. Possible values: hyperfoil, loop'
         )
-        choice(
+        string(
             name: 'LOCATION',
-            choices: ['local', 'remote'],
-            description: 'Where to run the services (local = localhost, remote = servers defined in envs/remote.env.yaml).'
+            defaultValue: 'local',
+            description: 'Where to run the services. Possible values: local (localhost), remote (servers defined in envs/remote.env.yaml)'
         )
         string(
             name: 'BENCHMARK_PARAMS',
