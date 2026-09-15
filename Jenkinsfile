@@ -1,7 +1,12 @@
 pipeline {
-    agent any
+    agent { label params.AGENT ?: 'built-in' }
 
     parameters {
+        string(
+            name: 'AGENT',
+            defaultValue: 'eclinux1',
+            description: 'Jenkins agent label to run the job on. Possible values: built-in (controller node), eclinux1 (remote Linux agent)'
+        )
         string(
             name: 'SUPERHEROES_REPO',
             defaultValue: 'https://github.com/quarkusio/quarkus-super-heroes.git',
