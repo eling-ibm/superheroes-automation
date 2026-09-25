@@ -6,6 +6,10 @@ scripts:
   - script: setup-hyperfoil
   - script: install-hyperfoil-catalog
   - script: upload-benchmark
+  - js: ${{PRE_BENCHMARK_SLEEP:0}} > 0
+    then:
+    - log: "PRE_BENCHMARK_SLEEP is set: sleeping ${{PRE_BENCHMARK_SLEEP:0}}s before benchmark starts..."
+    - sh: sleep ${{PRE_BENCHMARK_SLEEP:0}}
 
   run-benchmark:
   - script: 
@@ -84,6 +88,10 @@ states:
   HF_RUN_ID:
   HF_LOCAL_DIR: /tmp/hf-benchmarks
   HF_BENCHMARK_REF: ${{HF_LOCAL_DIR}}/${{HF_BENCHMARK_FILE}}
+
+  # sleep duration in seconds before the benchmark starts (useful for troubleshooting the environment)
+  # set to 0 (default) to disable
+  PRE_BENCHMARK_SLEEP: 0
 
   # additional benchmark template params you want to provide, e.g., -PDURATION=20s -P.....
   HF_BENCHMARK_PARAMS:
