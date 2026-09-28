@@ -39,7 +39,7 @@ scripts:
       # SDKMAN 5.9.1+575
     then:
     - regex: "SDKMAN (?<RUN.sdk_version>[\\d\\.\\+]+)"
-  
+
   sdk-select-java:
   - script: install-sdkman # requires util.yaml
   - sh:
@@ -113,6 +113,7 @@ scripts:
   - set-state: RUN.${{MAX_STATE}} ${{${{MAX_STATE}}}}
   - set-state: RUN.${{AVG_STATE}} ${{${{AVG_STATE}}}}
   
+
   parse-rss-results:
   # RSS_FILE: rss file to parse
   # MAX_STATE: where to save the max result
